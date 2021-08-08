@@ -1,0 +1,58 @@
+version: "3"
+services:
+  web1:
+    container_name: web-one
+    restart: always
+    depends_on:
+      - redis
+    build: .
+    ports:
+      - "3001:3000"
+    expose:
+      - 3001
+    links:
+      - redis
+
+  web2:
+    container_name: web-two
+    restart: always
+    depends_on:
+      - redis
+    build: .
+    ports:
+      - "3002:3000"
+    expose:
+      - 3002
+    links:
+      - redis
+
+  mongodb_1:
+    container_name: mongoDB-one
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+
+  redis:
+    container_name: redis-server
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data:/data
+
+  haproxy:
+    container_name: haproxy
+    image: hypriot/rpi-haproxy
+    volumes:
+      - ./haproxy:/haproxy-override
+    links:
+      - web1
+      - web2
+    ports:
+      - "8080:80"
+      - "70:70"
+    expose:
+      - "8080"
+      - "70"

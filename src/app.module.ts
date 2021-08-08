@@ -4,8 +4,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { RedisCacheModule } from './modules/redisCache/redisCache.module';
 import { ConfigModule } from '@nestjs/config';
 import { ApproachTwoModule } from './modules/approachTwo/approachTwo.module';
-import { ApproachTwoController } from './modules/approachTwo/approachTwo.controller';
-import { ApproachTwoService } from './modules/approachTwo/approachTwo.service';
+import { TerminusModule } from '@nestjs/terminus';
+import { HealthController } from './health/health.controller';
 
 @Module({
   imports: [
@@ -14,8 +14,9 @@ import { ApproachTwoService } from './modules/approachTwo/approachTwo.service';
     ApproachOneModule,
     ApproachTwoModule,
     RedisCacheModule,
+    TerminusModule,
   ],
-  controllers: [],
+  controllers: [HealthController],
   providers: [],
 })
 export class AppModule {}
