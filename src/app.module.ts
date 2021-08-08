@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
+import { ApproachOneModule } from './modules/approachOne/approachOne.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost/nest'),
+    ApproachOneModule,
+  ],
   controllers: [],
-  providers: [],
 })
 export class AppModule {}
