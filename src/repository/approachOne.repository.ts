@@ -14,24 +14,20 @@ export class ApproachOneRepository {
 
   async updateOrCreate(approachOneData: ApproachOneRequestDto) {
     const query = { id: approachOneData.id };
-    return this.sensorDataModel.findOneAndUpdate(
-      query,
-      approachOneData,
-      {
-        upsert: true,
-      },
-      (err, doc) => {
-        if (err) {
-          throw new HttpException(
-            {
-              status: HttpStatus.INTERNAL_SERVER_ERROR,
-              error: 'DB Error',
-            },
-            HttpStatus.INTERNAL_SERVER_ERROR,
-          );
-        }
-        return doc;
-      },
-    );
+    const data = { $set: approachOneData };
+    const options = { upsert: true };
+
+    return this.sensorDataModel.updateOne(query, data, options, (err, doc) => {
+      if (err) {
+        throw new HttpException(
+          {
+            status: HttpStatus.INTERNAL_SERVER_ERROR,
+            error: 'DB Error',
+          },
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
+      }
+      return doc;
+    });
   }
 }
