@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { ApproachOneRequestDto } from './dto/request/approachOne.request.dto';
-import { SensorData } from '../../database/sensorData.schema';
 
 import { ApproachOneRepository } from '../../repository/approachOne.repository';
 import { ApproachOneResponseDto } from './dto/response/approachOne.response.dto';
