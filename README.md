@@ -8,7 +8,7 @@
 
 ### Running the App
 
-1 Configure ``.env`` according to your setup
+1. Configure ``.env`` according to your setup
 2. ``npm install``
 3. ``npm run start`` OR ``npm run start:dev``(Hot reload)
 4. Api will be hosted on ``http://localhost:3000`` OR ``http://127.0.0.1:3000``
