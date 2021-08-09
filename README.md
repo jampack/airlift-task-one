@@ -1,4 +1,4 @@
-# Standalone App
+# Standalone Setup
 
 ### Requirements
 
